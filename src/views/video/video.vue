@@ -2,7 +2,7 @@
   <div class="video-page" ref="videoPageDiv">
     <template v-for="(item, index) in videoItems" :key="index">
       <div class="item-wrapper">
-        <VideoItemV1 :item="item"></VideoItemV1>
+        <VideoItemV1 :item="item" @goToVideoDetail="goToVideoDetail" />
       </div>
     </template>
   </div>
@@ -10,10 +10,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import VideoItemV1 from '@/components/video-item-v1'
 import { getTopMV } from '@/service/video'
 import { CellGroup } from 'vant'
 
+const router = useRouter()
 const videoPageDiv = ref<null | HTMLDivElement>(null)
 const videoItems = ref<any>([])
 const hasMore = ref(true)
@@ -42,6 +44,10 @@ onMounted(() => {
     }
   })
 })
+
+const goToVideoDetail = (id) => {
+  router.push(`/detail-video?id=${id}`)
+}
 </script>
 
 <style lang="scss" scoped>

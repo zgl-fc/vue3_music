@@ -49,6 +49,10 @@ const tabbarItem = [
 watch(
   () => route.path,
   (newval) => {
+    if (newval === '/') {
+      active.value = 0
+      return
+    }
     active.value = tabbarItem.findIndex((item) => item.path === newval)
   },
   {

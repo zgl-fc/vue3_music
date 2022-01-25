@@ -1,5 +1,5 @@
 <template>
-  <div class="video-item-v1">
+  <div class="video-item-v1" @click="goToPage">
     <div class="album">
       <img :src="item.cover" alt="album" />
       <div class="info">
@@ -14,10 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import { formatCount, formatDuration } from '@/utils/format'
-
 const props = defineProps<{ item: any }>()
+const emit = defineEmits<{ (e: 'goToVideoDetail', id: number): void }>()
+const goToPage = () => {
+  emit('goToVideoDetail', props.item.id)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -39,6 +42,21 @@ const props = defineProps<{ item: any }>()
       width: 100%;
       color: $color-text-ll;
       font-size: $font-size-medium;
+      .count {
+        padding-left: 3px;
+        &::before {
+          content: '';
+          position: relative;
+          top: -2px;
+          display: inline-block;
+          width: 18px;
+          height: 18px;
+          margin-right: 2px;
+          vertical-align: text-top;
+          background-size: cover;
+          background-image: url('~@/assets/images/video.png');
+        }
+      }
       .duration {
         padding-right: 4px;
       }

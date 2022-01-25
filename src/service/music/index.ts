@@ -12,3 +12,42 @@ export function getBanners() {
     }
   })
 }
+
+interface TopListData {
+  playlist: any
+  code: number
+}
+/**
+ * 获取榜单 0 飙升 1 热门 2 新歌 3 原创
+ * @param {} idx
+ */
+export function getTopList(idx: number) {
+  return request.get<TopListData>({
+    url: '/top/list',
+    params: {
+      idx
+    }
+  })
+}
+
+interface SongMenuData {
+  code: number
+  playlists: any
+  cat: string
+  total: number
+  more: boolean
+}
+/**
+ * 请求歌单数据
+ * @param {*} cat 类别
+ * @param {*} limit 个数
+ */
+export function getSongMenu(cat = '全部', limit = 6) {
+  return request.get<SongMenuData>({
+    url: '/top/playlist',
+    params: {
+      cat,
+      limit
+    }
+  })
+}
