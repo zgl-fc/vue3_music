@@ -11,9 +11,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { CellGroup } from 'vant'
+import { throttle } from '@/utils/util'
 import VideoItemV1 from '@/components/video-item-v1'
 import { getTopMV } from '@/service/video'
-import { CellGroup } from 'vant'
 
 const router = useRouter()
 const videoPageDiv = ref<null | HTMLDivElement>(null)
@@ -37,12 +38,16 @@ getTopMVData(0)
 onMounted(() => {
   const divWrapper = videoPageDiv.value
   const containHeight = divWrapper?.offsetHeight || 0
-  divWrapper?.addEventListener('scroll', (e: any) => {
-    const targetEle = e.target
-    if (targetEle?.scrollHeight - targetEle?.scrollTop - 1 < containHeight) {
-      getTopMVData(videoItems.value.length)
-    }
-  })
+  divWrapper?.addEventListener(
+    'scroll',
+    throttle((e: any) => {
+      console.log('1')
+      const targetEle = e.target
+      if (targetEle?.scrollHeight - targetEle?.scrollTop - 1 < containHeight) {
+        getTopMVData(videoItems.value.length)
+      }
+    }, 500)
+  )
 })
 
 const goToVideoDetail = (id) => {

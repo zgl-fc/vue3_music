@@ -21,7 +21,9 @@ export default class FCRequest {
     this.instance.interceptors.response.use(
       (res) => {
         const data = res.data
-        return data
+        if (data.code === 200) {
+          return data
+        }
       },
       (err) => {
         return err
