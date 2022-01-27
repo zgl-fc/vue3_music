@@ -1,5 +1,5 @@
 <template>
-  <div class="music-page">
+  <div class="music-page" ref="musicPageDivRef">
     <Search placeholder="请输入搜索关键词" @click="goToSearch"></Search>
     <div class="swiper-wrapper">
       <Swiper :banners="banners"></Swiper>
@@ -15,6 +15,12 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'Music'
+})
+</script>
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
@@ -27,12 +33,17 @@ import SongList from '@/components/song-list'
 
 import { getBanners, getTopList, getSongMenu } from '@/service/music'
 
+import { scrollToLast } from '@/hooks'
+
 const router = useRouter()
 
+const musicPageDivRef = ref<null | HTMLDivElement>(null)
 const banners = ref<any>([])
 const recommendSongs = ref<any>([])
 const recommendSongsList = ref<any>([])
 const hotsongList = ref<any>([])
+
+scrollToLast(musicPageDivRef)
 
 function getPageData() {
   getBanners().then((data) => {

@@ -50,12 +50,7 @@
     </div>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'song-search'
-})
-</script>
+
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { Search, Tag } from 'vant'

@@ -8,18 +8,31 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'Video'
+})
+</script>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onActivated } from 'vue'
 import { useRouter } from 'vue-router'
+
 import { CellGroup } from 'vant'
-import { throttle } from '@/utils/util'
 import VideoItemV1 from '@/components/video-item-v1'
+
 import { getTopMV } from '@/service/video'
+
+import { throttle } from '@/utils/util'
+
+import { scrollToLast } from '@/hooks'
 
 const router = useRouter()
 const videoPageDiv = ref<null | HTMLDivElement>(null)
 const videoItems = ref<any>([])
 const hasMore = ref(true)
+
+scrollToLast(videoPageDiv)
 
 const getTopMVData = async (offset: number) => {
   if (!hasMore.value) return
@@ -41,13 +54,15 @@ onMounted(() => {
   divWrapper?.addEventListener(
     'scroll',
     throttle((e: any) => {
-      console.log('1')
       const targetEle = e.target
       if (targetEle?.scrollHeight - targetEle?.scrollTop - 1 < containHeight) {
         getTopMVData(videoItems.value.length)
       }
     }, 500)
   )
+  onActivated(() => {
+    console.log(1)
+  })
 })
 
 const goToVideoDetail = (id) => {
