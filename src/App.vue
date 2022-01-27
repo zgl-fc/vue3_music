@@ -1,5 +1,11 @@
 <template>
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <transition name="fade" mode="out-in">
+      <keep-alive :exclude="['detail-video', 'song-search']">
+        <component :is="Component" />
+      </keep-alive>
+    </transition>
+  </router-view>
   <Tabbar></Tabbar>
 </template>
 

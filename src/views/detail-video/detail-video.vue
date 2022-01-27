@@ -1,6 +1,6 @@
 <template>
   <div class="detail-video">
-    <NavBar title="视频详情" left-text="返回" left-arrow @click-left="back" />
+    <BackTop title="视频详情" />
     <video class="video-player" :src="mvURL.url" controls autoplay></video>
     <div class="info">
       <p class="title">{{ mvInfo.name }}</p>
@@ -23,10 +23,16 @@
   </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue'
+export default defineComponent({
+  name: 'detail-video'
+})
+</script>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { NavBar } from 'vant'
+import { useRoute } from 'vue-router'
+import BackTop from '@/components/back-top'
 import DetailVideoItem from '@/components/detail-video-item'
 import { getMVURL, getRelateMV, getMVDetail } from '@/service/video'
 import { formatCount } from '@/utils/format'
@@ -34,7 +40,6 @@ const mvInfo = ref<any>({})
 const mvURL = ref<any>({})
 const relatedMV = ref<any>([])
 const route = useRoute()
-const router = useRouter()
 const getPageData = (id: number) => {
   getMVURL(id).then((res) => {
     mvURL.value = res.data
@@ -47,10 +52,6 @@ const getPageData = (id: number) => {
   })
 }
 getPageData(route.query.id as any)
-
-const back = () => {
-  router.back()
-}
 </script>
 
 <style lang="scss" scoped>
@@ -63,9 +64,6 @@ const back = () => {
   z-index: 10;
   overflow: scroll;
   background-color: $color-background;
-  &::v-deep .van-nav-bar__left {
-    padding-left: 0 !important;
-  }
   .video-player {
     width: 100%;
   }

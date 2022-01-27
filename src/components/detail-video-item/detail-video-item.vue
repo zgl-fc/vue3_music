@@ -41,6 +41,8 @@ const props = defineProps<{ item: any }>()
   .info {
     flex: 1;
     .title {
+      @include twoline();
+      line-height: 18px;
       font-size: $font-size-medium;
       margin-bottom: 8px;
     }

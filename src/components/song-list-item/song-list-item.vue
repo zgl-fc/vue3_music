@@ -39,7 +39,6 @@ const props = defineProps<{ songitem: any }>()
   .bottom {
     line-height: 16px;
     font-size: $font-size-medium;
-    white-space: normal;
     @include twoline();
   }
 }

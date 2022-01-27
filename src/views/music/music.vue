@@ -1,6 +1,6 @@
 <template>
   <div class="music-page">
-    <Search placeholder="请输入搜索关键词"></Search>
+    <Search placeholder="请输入搜索关键词" @click="goToSearch"></Search>
     <div class="swiper-wrapper">
       <Swiper :banners="banners"></Swiper>
     </div>
@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { Search } from 'vant'
 import Swiper from '@/components/swiper'
@@ -25,6 +26,8 @@ import SongItem1 from '@/components/song-item-v1'
 import SongList from '@/components/song-list'
 
 import { getBanners, getTopList, getSongMenu } from '@/service/music'
+
+const router = useRouter()
 
 const banners = ref<any>([])
 const recommendSongs = ref<any>([])
@@ -58,6 +61,10 @@ function getPageData() {
 }
 
 getPageData()
+
+const goToSearch = () => {
+  router.push('/song-search')
+}
 </script>
 
 <style lang="scss" scoped>

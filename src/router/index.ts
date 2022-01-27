@@ -26,6 +26,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'DetailVideo',
     component: () =>
       import(/* webpackChunkName: "detail-video" */ '../views/detail-video')
+  },
+  {
+    path: '/song-search',
+    name: 'SongSearch',
+    component: () =>
+      import(/* webpackChunkName: "song-search" */ '../views/song-search')
   }
 ]
 
