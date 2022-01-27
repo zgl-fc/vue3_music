@@ -1,6 +1,6 @@
 <template>
   <div class="song-item-v2">
-    <h1 class="order">{{ index }}</h1>
+    <h1 class="order">{{ index + 1 }}</h1>
     <div class="info">
       <div class="name">{{ item.name }}</div>
       <div class="singer">

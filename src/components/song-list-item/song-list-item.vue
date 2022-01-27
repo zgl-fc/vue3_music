@@ -1,5 +1,5 @@
 <template>
-  <div class="song-list-item">
+  <div class="song-list-item" @click="goDetail">
     <div class="top">
       <img :src="songitem.coverImgUrl" alt="img" />
       <view class="play-counter">{{ formatCount(songitem.playCount) }}</view>
@@ -10,8 +10,13 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { useRouter } from 'vue-router'
 import { formatCount } from '@/utils/format'
 const props = defineProps<{ songitem: any }>()
+const router = useRouter()
+const goDetail = () => {
+  router.push(`/detail-song-list?type=menu&id=${props.songitem.id}`)
+}
 </script>
 
 <style lang="scss" scoped>

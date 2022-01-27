@@ -51,3 +51,16 @@ export function getSongMenu(cat = '全部', limit = 6) {
     }
   })
 }
+
+/**
+ * 歌单详情
+ * @param {} id 歌单id
+ */
+export function getSongMenuList(id: number) {
+  return request.get({
+    url: '/playlist/detail/dynamic',
+    params: {
+      id
+    }
+  })
+}
