@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component }">
     <transition name="fade" mode="out-in">
-      <keep-alive :include="['Music', 'Video', 'MoreSongMenu']">
+      <keep-alive :include="['Music', 'Video', 'MoreSongMenu', 'Rank']">
         <component :is="Component" />
       </keep-alive>
     </transition>
