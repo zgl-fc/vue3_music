@@ -1,6 +1,6 @@
 <template>
   <div class="song-list">
-    <Title :title="title" />
+    <Title :title="title" @more="more" />
     <div class="song-list-scroll">
       <template v-for="(item, index) in songList" :key="index">
         <div class="song-list-item-wrapper">
@@ -13,9 +13,15 @@
 
 <script setup lang="ts">
 import { defineProps, withDefaults } from 'vue'
+import { useRouter } from 'vue-router'
 import Title from '../title'
 import SongListItem from '../song-list-item'
+
+const router = useRouter()
 const props = defineProps<{ title: string; songList: any }>()
+const more = () => {
+  router.push('/more-song-menu')
+}
 </script>
 
 <style lang="scss" scoped>

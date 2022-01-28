@@ -22,6 +22,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "music" */ '../views/video')
   },
   {
+    path: '/rank',
+    name: 'Rank',
+    component: () => import(/* webpackChunkName: "music" */ '../views/rank')
+  },
+  {
     path: '/detail-video',
     name: 'DetailVideo',
     component: () =>
@@ -40,6 +45,12 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "detail-song-list" */ '../views/detail-song-list'
       )
+  },
+  {
+    path: '/more-song-menu',
+    name: 'MoreSongMenu',
+    component: () =>
+      import(/* webpackChunkName: "more-song-menu" */ '../views/more-song-menu')
   }
 ]
 

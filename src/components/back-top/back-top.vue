@@ -17,4 +17,8 @@ const back = () => {
 .van-nav-bar__left {
   padding-left: 0 !important;
 }
+.van-nav-bar__text,
+.van-nav-bar .van-icon {
+  color: $color-text !important;
+}
 </style>

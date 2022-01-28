@@ -30,6 +30,14 @@ export function getTopList(idx: number) {
   })
 }
 
+interface SongMenuTags {
+  code: number
+  tags: any[]
+}
+export function getSongMenuTags() {
+  return request.get<SongMenuTags>({ url: '/playlist/hot' })
+}
+
 interface SongMenuData {
   code: number
   playlists: any

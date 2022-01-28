@@ -37,6 +37,14 @@ const tabbarItem = [
     }
   },
   {
+    text: '排行榜',
+    path: '/rank',
+    icon: {
+      active: require('@/assets/images/tabbar/rank_active.png'),
+      inactive: require('@/assets/images/tabbar/rank_normal.png')
+    }
+  },
+  {
     text: '个人',
     path: '/profile',
     icon: {
