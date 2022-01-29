@@ -7,12 +7,12 @@
       type="spinner"
       color="#333"
     ></Loading>
-    <template v-else v-for="(item, index) in rankList" :key="index">
+    <template v-for="(item, index) in rankList" :key="index">
       <div class="rank-item-wrapper">
         <RankListItem
           :item="item"
           :bgcolor="bgcolor[index]"
-          @moreDetail="goToRankDetail"
+          @moreDetail="goToRankDetail(index)"
         />
       </div>
     </template>
@@ -26,35 +26,29 @@ export default defineComponent({
 })
 </script>
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from '@/store'
 import { getTopList } from '@/service/music'
 
 import { Loading } from 'vant'
 import RankListItem from '@/components/rank-list-item'
-const rankList = ref<any>([])
+
+const store = useStore()
+const router = useRouter()
+const rankList = computed(() => {
+  return store.state.rank.rankList
+})
 const bgcolor = [
   'background-color: #74CEC2',
   'background-color: #ED897B',
   'background-color: #CB5174',
   'background-color: #F08EB5'
 ]
-function getTopListData() {
-  let promiseall: any[] = []
-  for (let i = 0; i < 4; i++) {
-    promiseall.push(getTopList(i))
-  }
-  Promise.all(promiseall).then((res) => {
-    let resList: any[] = []
-    for (const item of res) {
-      resList.push(item.playlist)
-    }
-    rankList.value = resList
-  })
-}
-getTopListData()
+store.dispatch('rank/getRankListAction')
 
-const goToRankDetail = () => {
-  // todo
+const goToRankDetail = (index: number) => {
+  router.push(`/detail-song-list?type=rank&id=${index}`)
 }
 </script>
 
@@ -67,6 +61,7 @@ const goToRankDetail = () => {
   right: 0;
   overflow: scroll;
   opacity: 0.8;
+  background-color: #fafafa;
   .loading {
     position: absolute;
     left: 50%;

@@ -1,8 +1,15 @@
-import { createStore } from 'vuex'
-
-export default createStore({
+import { createStore, useStore as vuseStore, Store } from 'vuex'
+import type { IStoreType, IRootState } from './types'
+import rank from './rank'
+export default createStore<IRootState>({
   state: {},
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    rank
+  }
 })
+
+export function useStore(): Store<IStoreType> {
+  return vuseStore()
+}

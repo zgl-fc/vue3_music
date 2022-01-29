@@ -5,26 +5,26 @@
       <div class="name">{{ item.name }}</div>
       <div class="singer">
         <img src="@/assets/images/icons/sq_icon.png" alt="sq" />
-        {{
-          (item.ar && item.ar[0].name) || (item.artists && item.artists[0].name)
-        }}
-        <span v-if="item.alias && item.alias.length !== 0">
-          - {{ item.alias[0] }}</span
-        >
-        <span v-else-if="item.alia && item.alia.length !== 0">
-          - {{ item.alia[0] }}</span
-        >
+        <span class="ssinfo">{{ songinfoStr }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 const props = defineProps<{
   index: number
   item: any
 }>()
+const songinfoStr = computed(() => {
+  const item = props.item
+  const fStr =
+    (item.ar && item.ar[0].name) || (item.artists && item.artists[0].name)
+  const sStr = item.alias && item.alias.length !== 0 ? '-' + item.alias[0] : ''
+  const tStr = item.alia && item.alia.length !== 0 ? '-' + item.alia[0] : ''
+  return fStr + (sStr || tStr)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -52,6 +52,10 @@ const props = defineProps<{
         width: 18px;
         height: 16px;
         margin-right: 5px;
+      }
+      .ssinfo {
+        @include oneline();
+        max-width: 250px;
       }
     }
   }

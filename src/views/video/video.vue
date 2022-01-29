@@ -15,7 +15,7 @@ export default defineComponent({
 })
 </script>
 <script setup lang="ts">
-import { ref, onMounted, onActivated } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 import { CellGroup } from 'vant'
@@ -60,9 +60,6 @@ onMounted(() => {
       }
     }, 500)
   )
-  onActivated(() => {
-    console.log(1)
-  })
 })
 
 const goToVideoDetail = (id) => {
