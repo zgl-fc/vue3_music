@@ -1,3 +1,11 @@
+export function getSizeImage(imgUrl: string, size = 80) {
+  return `${imgUrl}?param=${size}x${size}`
+}
+
+export function getSizeImageY(imgUrl: string, size = 50) {
+  return `${imgUrl}?param=${size}y${size}`
+}
+
 export function formatCount(count: number) {
   const counter = parseInt(count as any)
   if (counter > 100000000) {

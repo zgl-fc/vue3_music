@@ -2,7 +2,11 @@
   <Swipe class="my-swipe" :autoplay="3000" indicator-color="white">
     <template v-for="(item, index) in banners" :key="index">
       <SwipeItem>
-        <img class="swipe-image" :src="item.pic" alt="轮播" />
+        <img
+          class="swipe-image"
+          :src="getSizeImage(item.pic, 450)"
+          alt="轮播"
+        />
       </SwipeItem>
     </template>
   </Swipe>
@@ -11,6 +15,9 @@
 <script setup lang="ts">
 import { Swipe, SwipeItem } from 'vant'
 import { defineProps } from 'vue'
+
+import { getSizeImage } from '@/utils/format'
+
 const props = defineProps<{
   banners: any
 }>()

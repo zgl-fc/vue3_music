@@ -1,5 +1,5 @@
-import FCRequest from './request/axios'
-import { BASE_URL, TIME_OUT } from './request/config'
+import FCRequest from './axios'
+import { BASE_URL, TIME_OUT } from './config'
 
 export default new FCRequest({
   baseURL: BASE_URL,

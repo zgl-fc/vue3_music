@@ -1,7 +1,7 @@
 <template>
   <div class="song-list-item" @click="goDetail">
     <div class="top">
-      <img :src="songitem.coverImgUrl" alt="img" />
+      <img :src="getSizeImage(songitem.coverImgUrl, 200)" alt="img" />
       <view class="play-counter">{{ formatCount(songitem.playCount) }}</view>
     </div>
     <div class="bottom">{{ songitem.name }}</div>
@@ -11,7 +11,8 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import { useRouter } from 'vue-router'
-import { formatCount } from '@/utils/format'
+
+import { getSizeImage, formatCount } from '@/utils/format'
 const props = defineProps<{ songitem: any }>()
 const router = useRouter()
 const goDetail = () => {

@@ -51,6 +51,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'MoreSongMenu',
     component: () =>
       import(/* webpackChunkName: "more-song-menu" */ '../views/more-song-menu')
+  },
+  {
+    path: '/music-player',
+    name: 'MusicPlayer',
+    component: () =>
+      import(/* webpackChunkName: "music-player" */ '../views/music-player')
   }
 ]
 

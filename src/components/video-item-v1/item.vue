@@ -1,7 +1,7 @@
 <template>
   <div class="video-item-v1" @click="goToPage">
     <div class="album">
-      <img :src="item.cover" alt="album" />
+      <img :src="getSizeImage(item.cover, 200)" alt="album" />
       <div class="info">
         <div class="count">{{ formatCount(item.playCount) }}</div>
         <div class="duration">
@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
-import { formatCount, formatDuration } from '@/utils/format'
+import { formatCount, formatDuration, getSizeImage } from '@/utils/format'
 const props = defineProps<{ item: any }>()
 const emit = defineEmits<{ (e: 'goToVideoDetail', id: number): void }>()
 const goToPage = () => {

@@ -2,7 +2,7 @@
   <div class="rank-list-item" :style="bgcolor" @click="moreDetail">
     <div class="left-img">
       <h1 class="s-title">{{ item.name }}</h1>
-      <img :src="item.tracks[0].al.picUrl" alt="cover" />
+      <img :src="getSizeImage(item.tracks[0].al.picUrl, 100)" alt="cover" />
     </div>
     <div class="right-song-list" v-if="item.tracks.length !== 0">
       <template v-for="(child, index) in item.tracks.slice(0, 3)" :key="index">
@@ -17,6 +17,9 @@
 
 <script setup lang="ts">
 import { defineProps, withDefaults, defineEmits } from 'vue'
+
+import { getSizeImage } from '@/utils/format'
+
 const props = withDefaults(
   defineProps<{
     item: any

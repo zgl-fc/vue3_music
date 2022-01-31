@@ -17,7 +17,7 @@
       <div class="bg-image" :style="bgimg"></div>
       <div class="top-cover-info">
         <div class="album">
-          <img :src="songInfo.coverImgUrl" alt="cover" />
+          <img :src="getSizeImage(songInfo.coverImgUrl, 110)" alt="cover" />
           <div class="info">
             <div class="title">{{ songInfo.name }}</div>
             <div class="creater">
@@ -61,7 +61,7 @@ import { getSongMenuList } from '@/service/music'
 
 import { Loading } from 'vant'
 import SongItemV2 from '@/components/song-item-v2'
-import { formatCount } from '@/utils/format'
+import { formatCount, getSizeImage } from '@/utils/format'
 const route = useRoute()
 const router = useRouter()
 const store = useStore()
@@ -72,10 +72,16 @@ const isShowLoading = computed(() => {
 })
 if (route.query.type === 'rank') {
   songInfo.value = store.state.rank.rankList[route.query.id as any]
-  bgimg.value = `background-image: url(${songInfo.value.coverImgUrl})`
+  bgimg.value = `background-image: url(${getSizeImage(
+    songInfo.value.coverImgUrl,
+    450
+  )})`
 } else {
   getSongMenuList(route.query.id as any).then((res) => {
-    bgimg.value = `background-image: url(${res.playlist.coverImgUrl})`
+    bgimg.value = `background-image: url(${getSizeImage(
+      res.playlist.coverImgUrl,
+      450
+    )})`
     songInfo.value = res.playlist
   })
 }

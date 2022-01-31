@@ -1,7 +1,7 @@
 <template>
-  <div class="song-item-v1">
+  <div class="song-item-v1" @click="musicplay">
     <div class="song-info">
-      <img :src="songItem.al.picUrl" alt="pic" />
+      <img :src="getSizeImage(songItem.al.picUrl, 60)" alt="pic" />
       <div class="content">
         <p class="name">{{ songItem.name }}</p>
         <p class="singer">{{ songItem.ar[0].name }} - {{ songItem.al.name }}</p>
@@ -17,7 +17,18 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from '@/store'
+
+import { getSizeImage } from '@/utils/format'
+
+const router = useRouter()
+const store = useStore()
 const props = defineProps<{ songItem: any }>()
+const musicplay = () => {
+  store.dispatch('musicPlay/getPlaySongInfoAction', props.songItem)
+  router.push('/music-player')
+}
 </script>
 
 <style lang="scss" scoped>
