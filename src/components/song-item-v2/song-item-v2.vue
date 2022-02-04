@@ -1,5 +1,5 @@
 <template>
-  <div class="song-item-v2">
+  <div class="song-item-v2" @click="musicplay">
     <h1 class="order">{{ index + 1 }}</h1>
     <div class="info">
       <div class="name">{{ item.name }}</div>
@@ -13,6 +13,9 @@
 
 <script setup lang="ts">
 import { defineProps, computed } from 'vue'
+import { useStore } from '@/store'
+
+const store = useStore()
 const props = defineProps<{
   index: number
   item: any
@@ -25,6 +28,9 @@ const songinfoStr = computed(() => {
   const tStr = item.alia && item.alia.length !== 0 ? '-' + item.alia[0] : ''
   return fStr + (sStr || tStr)
 })
+const musicplay = () => {
+  store.dispatch('musicPlay/addSongAction', props.item)
+}
 </script>
 
 <style lang="scss" scoped>

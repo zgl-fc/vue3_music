@@ -86,6 +86,7 @@ const goToSearch = () => {
   left: 0;
   right: 0;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   .swiper-wrapper {
     padding: 0 5px;
   }

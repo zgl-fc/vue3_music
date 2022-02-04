@@ -17,17 +17,14 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
 
 import { getSizeImage } from '@/utils/format'
 
-const router = useRouter()
 const store = useStore()
 const props = defineProps<{ songItem: any }>()
 const musicplay = () => {
-  store.dispatch('musicPlay/getPlaySongInfoAction', props.songItem)
-  router.push('/music-player')
+  store.dispatch('musicPlay/addSongAction', props.songItem)
 }
 </script>
 

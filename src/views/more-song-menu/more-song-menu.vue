@@ -71,6 +71,7 @@ getSongMenuDetail()
   z-index: 10;
   background-color: $color-background;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   .loading {
     position: absolute;
     left: 50%;

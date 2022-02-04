@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 
@@ -70,21 +70,24 @@ const songInfo = ref<any>({})
 const isShowLoading = computed(() => {
   return Object.keys(songInfo.value).length === 0
 })
-if (route.query.type === 'rank') {
-  songInfo.value = store.state.rank.rankList[route.query.id as any]
-  bgimg.value = `background-image: url(${getSizeImage(
-    songInfo.value.coverImgUrl,
-    450
-  )})`
-} else {
-  getSongMenuList(route.query.id as any).then((res) => {
+
+onMounted(() => {
+  if (route.query.type === 'rank') {
+    songInfo.value = store.state.rank.rankList[route.query.id as any]
     bgimg.value = `background-image: url(${getSizeImage(
-      res.playlist.coverImgUrl,
+      songInfo.value.coverImgUrl,
       450
     )})`
-    songInfo.value = res.playlist
-  })
-}
+  } else {
+    getSongMenuList(route.query.id as any).then((res) => {
+      bgimg.value = `background-image: url(${getSizeImage(
+        res.playlist.coverImgUrl,
+        450
+      )})`
+      songInfo.value = res.playlist
+    })
+  }
+})
 
 const back = () => {
   router.back()
@@ -101,6 +104,7 @@ const back = () => {
   z-index: 10;
   background-color: $color-background;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   .loading {
     position: absolute;
     left: 50%;

@@ -37,7 +37,7 @@ scrollToLast(videoPageDiv)
 const getTopMVData = async (offset: number) => {
   if (!hasMore.value) return
   try {
-    const res = await getTopMV(offset, 10)
+    const res = await getTopMV(offset, 14)
     let newData = videoItems.value
     newData = offset === 0 ? res.data : newData.concat(res.data)
     videoItems.value = newData
@@ -80,6 +80,7 @@ const goToVideoDetail = (id) => {
   left: 0;
   right: 0;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   .item-wrapper {
     width: 48%;
     margin-bottom: 15px;

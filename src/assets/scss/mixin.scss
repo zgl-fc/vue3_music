@@ -43,3 +43,11 @@
   /*! autoprefixer: off */
   -webkit-box-orient: vertical;
 }
+
+@mixin hideScrollBar {
+  -ms-overflow-style: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

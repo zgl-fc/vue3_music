@@ -1,7 +1,7 @@
 <template>
   <div class="detail-video-item">
     <div class="album">
-      <img :src="item.coverUrl" alt="coverUrl" />
+      <img :src="getSizeImage(item.coverUrl, 120)" alt="coverUrl" />
       <span class="count">{{ formatCount(item.playTime) }}</span>
     </div>
     <div class="info">
@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue'
-import { formatCount } from '@/utils/format'
+import { formatCount, getSizeImage } from '@/utils/format'
 const props = defineProps<{ item: any }>()
 </script>
 

@@ -62,6 +62,7 @@ const goToRankDetail = (index: number) => {
   overflow: scroll;
   opacity: 0.8;
   background-color: #fafafa;
+  -webkit-overflow-scrolling: touch;
   .loading {
     position: absolute;
     left: 50%;
