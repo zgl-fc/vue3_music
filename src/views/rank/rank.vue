@@ -29,22 +29,25 @@ export default defineComponent({
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
-import { getTopList } from '@/service/music'
 
 import { Loading } from 'vant'
 import RankListItem from '@/components/rank-list-item'
 
-const store = useStore()
-const router = useRouter()
-const rankList = computed(() => {
-  return store.state.rank.rankList
-})
+import { getTopList } from '@/service/music'
+
 const bgcolor = [
   'background-color: #74CEC2',
   'background-color: #ED897B',
   'background-color: #CB5174',
   'background-color: #F08EB5'
 ]
+const store = useStore()
+const router = useRouter()
+
+const rankList = computed(() => {
+  return store.state.rank.rankList
+})
+
 store.dispatch('rank/getRankListAction')
 
 const goToRankDetail = (index: number) => {

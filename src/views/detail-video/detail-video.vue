@@ -26,10 +26,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+
 import BackTop from '@/components/back-top'
 import DetailVideoItem from '@/components/detail-video-item'
+
 import { getMVURL, getRelateMV, getMVDetail } from '@/service/video'
 import { formatCount } from '@/utils/format'
+
 const mvInfo = ref<any>({})
 const mvURL = ref<any>({})
 const relatedMV = ref<any>([])

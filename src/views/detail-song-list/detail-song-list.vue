@@ -57,20 +57,28 @@ import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/store'
 
-import { getSongMenuList } from '@/service/music'
-
 import { Loading } from 'vant'
 import SongItemV2 from '@/components/song-item-v2'
+
+import { getSongMenuList } from '@/service/music'
+
 import { formatCount, getSizeImage } from '@/utils/format'
+
+// data
+const bgimg = ref('')
+const songInfo = ref<any>({})
+
+//vue-router vuex
 const route = useRoute()
 const router = useRouter()
 const store = useStore()
-const bgimg = ref('')
-const songInfo = ref<any>({})
+
+//computed
 const isShowLoading = computed(() => {
   return Object.keys(songInfo.value).length === 0
 })
 
+// methods
 onMounted(() => {
   if (route.query.type === 'rank') {
     songInfo.value = store.state.rank.rankList[route.query.id as any]
@@ -88,7 +96,6 @@ onMounted(() => {
     })
   }
 })
-
 const back = () => {
   router.back()
 }

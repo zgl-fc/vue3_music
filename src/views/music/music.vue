@@ -37,6 +37,7 @@ import { scrollToLast } from '@/hooks'
 
 const router = useRouter()
 
+// data
 const musicPageDivRef = ref<null | HTMLDivElement>(null)
 const banners = ref<any>([])
 const recommendSongs = ref<any>([])

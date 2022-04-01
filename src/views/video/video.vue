@@ -27,10 +27,10 @@ import { throttle } from '@/utils/util'
 
 import { scrollToLast } from '@/hooks'
 
-const router = useRouter()
 const videoPageDiv = ref<null | HTMLDivElement>(null)
 const videoItems = ref<any>([])
 const hasMore = ref(true)
+const router = useRouter()
 
 scrollToLast(videoPageDiv)
 

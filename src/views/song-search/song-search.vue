@@ -53,15 +53,19 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+
 import { Search, Tag } from 'vant'
 import BackTop from '@/components/back-top'
 import SongItemV2 from '@/components/song-item-v2'
+
 import {
   getHotSearch,
   getSuggestSearch,
   getSearchResult
 } from '@/service/search'
 import { debounce } from '@/utils/util'
+
+//data
 const searchValue = ref('')
 const suggestResult = ref<any>([])
 const searchResult = ref<any>([])
@@ -69,6 +73,7 @@ const hotkeys = ref<any>([])
 const searchRef = ref<any>()
 const isSearch = ref(false)
 const isFocus = ref(false)
+
 const isShowCancel = computed(() => {
   return !!searchValue.value || isFocus.value
 })

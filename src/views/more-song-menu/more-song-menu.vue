@@ -29,13 +29,14 @@ export default defineComponent({
 </script>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getSongMenuTags, getSongMenu } from '@/service/music'
 
 import { Loading } from 'vant'
 import SongListItem from '@/components/song-list-item'
 import BackTop from '@/components/back-top'
 
+import { getSongMenuTags, getSongMenu } from '@/service/music'
 import { scrollToLast } from '@/hooks'
+
 const songMenuList = ref<any>([])
 const moreSongMenuRef = ref<HTMLDivElement | null>(null)
 
